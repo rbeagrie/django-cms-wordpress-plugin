@@ -1,0 +1,8 @@
+{% for post in posts %}
+<p class="bold">{{ post.title }}</p>
+
+{{ post.excerpt|safe }}
+{% endfor %}
+
+
+
