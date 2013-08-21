@@ -2,6 +2,10 @@
 <p class="bold">{{ post.title }}</p>
 
 {{ post.excerpt|safe }}
+
+{% if instance.show_date %}
+<p>{{ post.date }}</p>
+{% endif %}
 {% endfor %}
 
 
