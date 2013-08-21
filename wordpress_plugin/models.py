@@ -7,4 +7,5 @@ class WordpressPosts(CMSPlugin):
     site_id = models.IntegerField(default=54754621)
     max_posts = models.IntegerField(default=5)
     show_date = models.BooleanField(default=False)
+    date_format = models.CharField('D d M Y')
 

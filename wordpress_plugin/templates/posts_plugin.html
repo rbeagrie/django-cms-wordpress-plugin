@@ -4,7 +4,7 @@
 {{ post.excerpt|safe }}
 
 {% if instance.show_date %}
-<p>{{ post.date }}</p>
+<p class="wordpress_plugins_post_date">{{ post.date|date:instance.date_format }}</p>
 {% endif %}
 {% endfor %}
 
