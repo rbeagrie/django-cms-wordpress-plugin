@@ -22,7 +22,7 @@ class WordpressPostsPlugin(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         context['instance'] = instance
-	posts = Post.objects.filter()[:instance.max_posts]
+	posts = Post.objects.published()[:instance.max_posts]
         posts = [ {'title':sanitize_string(p.title),
                    'excerpt':excerptize_string(p.content),
                    #'date':'this is my date',
