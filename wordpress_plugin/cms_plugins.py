@@ -3,7 +3,7 @@ from cms.plugin_pool import plugin_pool
 from cms.models.pluginmodel import CMSPlugin
 from django.utils.translation import ugettext_lazy as _
 from models import WordpressPosts
-from wordpress.models import Post
+from wordpress.models import Post, Option
 import string
 
 def sanitize_string(my_string):
@@ -15,6 +15,17 @@ def excerptize_string(my_string):
     words.append(u'...')
     words = u' '.join(words)
     return sanitize_string(words)
+    
+def get_siteurl():
+    return Option.objects.filter(name='siteurl')[0].value
+    
+def get_url(p):
+    return '{0}/{1}/{2}/{3}/{4}'.format(
+      get_siteurl(),
+      p.post_date.year,
+      "%02i" % p.post_date.month,
+      "%02i" % p.post_date.day,
+      p.slug)
 
 class WordpressPostsPlugin(CMSPluginBase):
     model = WordpressPosts
@@ -27,6 +38,7 @@ class WordpressPostsPlugin(CMSPluginBase):
                    'excerpt':excerptize_string(p.content),
                    #'date':'this is my date',
                    'date':p.post_date,
+                   'url':get_url(p),
                   } for p in posts]
 
 	context['posts'] = posts
