@@ -6,6 +6,8 @@
 {% if instance.show_date %}
 <p class="wordpress_plugins_post_date">{{ post.date|date:instance.date_format }}</p>
 {% endif %}
+
+<p><a href="{{ post.url }}">More...</a></p>
 {% endfor %}
 
 
